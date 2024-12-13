@@ -6,9 +6,10 @@ const NewReleases = () => {
     const [newReleases, setNewReleases] = useState([]);
 
     useEffect(() => {
+        // Fetch delle nuove uscite dall'API Deezer
         fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=new')
             .then(response => response.json())
-            .then(data => setNewReleases(data.data))
+            .then(data => setNewReleases(data.data.slice(0, 8))) // Limita a 8 risultati per esempio
             .catch(error => console.log(error));
     }, []);
 
